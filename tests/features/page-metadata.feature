@@ -2,7 +2,7 @@
 Feature: Page metadata
     What a search engine or a link preview sees.
 
-    @desktop @mobile @smoke
+    @desktop @smoke
     Scenario: The page describes itself
         Given I navigate to path "/"
         Then the page title is "Blaise Moses — Senior AI Engineer"

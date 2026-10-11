@@ -11,4 +11,90 @@ shared behaviour for every page; extend it for each screen of the app
 - **Extends:** —
 - **Source:** `tests/pages/BasePage.ts:6`
 
+- `get host` — the full-screen host element of the scene; it also backs the open menu
 - `async goto()` — navigate to a path relative to the configured baseURL, and wait for the DOM
+- `async press()` — press a key on the keyboard
+
+## BootScreen
+
+the CRT gate: the computer screen that waits to be woken and then types its boot lines
+
+- **Extends:** `BasePage`
+- **Source:** `tests/pages/BootScreen.ts:7`
+
+- `screen` — the CRT screen while it still shows the gate prompt or boot lines
+- `computerScreen` — the computer screen in the room (the CRT has no title, unlike the hotspots and menu entries)
+- `gatePrompt` — the gate prompt, which is only shown until the machine is woken
+- `text()` — a piece of text on the CRT screen, matched as a substring
+- `async click()` — wake the machine with a click or tap on the screen
+- `async clickComputerScreen()` — click the computer screen to open the Projects group
+
+## Hud
+
+the HUD over the room: menu, sound and lights buttons, the footer and the drag hint
+
+- **Extends:** `BasePage`
+- **Source:** `tests/pages/Hud.ts:7`
+
+- `menuButton` — the hamburger button; aria-expanded tells whether the menu is open
+- `soundButton` — the speaker button; aria-pressed is true while sound is on
+- `lightsSwitch` — the HUD lights switch; aria-checked is true while it is day
+- `footer` — the copyright span of the footer, which only renders once the room is entered
+- `footerEmail` — the mailto link in the footer
+- `footerGithub` — the GitHub link in the footer
+- `menuEntries` — every entry of the open menu, in DOM order; the label filter excludes the CRT, back links and headings
+- `async openMenu()` — open the menu when it is closed
+- `async closeMenu()` — close the menu with its hamburger button
+- `async chooseMenuEntry()` — pick one entry of the open menu by its label
+- `async clickOutsideMenu()` — click the menu's full-screen backdrop, away from the menu entries
+- `hint()` — the drag hint containing this text
+- `async toggleSound()` — click the speaker button
+- `async toggleLights()` — click the HUD lights switch
+- `async toggleMenu()` — click the hamburger button
+
+## ReadingPanel
+
+the bottom panel: a group's heading and blurb, or a point's terminal-style reading panel
+
+- **Extends:** `BasePage`
+- **Source:** `tests/pages/ReadingPanel.ts:7`
+
+- `pathHeader` — the `~/group/point` path header; present only while a point is open
+- `body` — the visible, still-typing body text; the aria-hidden sizer copy is deliberately excluded
+- `openPrompt` — the command prompt of an open point or entry (`$ vim x.md`, `$ whoami`); the listing's `$ ls -la` is excluded
+- `sizer` — the aria-hidden, invisible copy of the full body text that holds the panel's height
+- `visitLink` — the VISIT link of a point or entry
+- `roomLink` — the back link to the room, which only exists on a group panel
+- `listingRows` — every numbered row of a listing (`01`, `02`, ...)
+- `cdBack` — the `◂ cd ..` link of an opened entry
+- `listingRow()` — the listing row with the given number, such as "01"
+- `listingName()` — the entry name of a listing row
+- `listingSummary()` — the summary line of a listing row
+- `async openEntry()` — open a listing entry by clicking its name
+- `async cdUp()` — go back from an entry to the listing with `◂ cd ..`
+- `text()` — an exact piece of panel text, such as a title, heading or prompt
+- `backLink()` — the `◂ <label>` back link
+- `path()` — the `~/group/point` header for one path
+- `async goBack()` — go back using the `◂ <label>` link
+- `async typingProgress()` — the typed so far and the full text of the open body, or null while no body is showing
+- `async skipTyping()` — click the body to skip the typing
+
+## RoomPage
+
+the artwork: the clickable hotspots, the letterbox around the plate and portrait panning
+
+- **Extends:** `BasePage`
+- **Source:** `tests/pages/RoomPage.ts:7`
+
+- `hotspot()` — the hotspot of one point, by its POI key and its title
+- `wallLightSwitch` — the light switch drawn on the wall; it has no role, only a title, unlike the HUD switch
+- `async isPortrait()` — whether the viewport is portrait, where the plate is cropped and panned by dragging
+- `async dragHorizontally()` — drag horizontally across the room at the given height
+- `async panIntoView()` — portrait only: pan the room until the hotspot's centre sits inside the safe, tappable zone
+- `async openPoint()` — open a point by clicking its hotspot, panning it into view first when in portrait
+- `async clickLetterbox()` — click in the left letterbox bar, outside the artwork
+- `async flipWallLightSwitch()` — flip the light switch on the wall; the scene keeps repainting, so click a spot that really hits it
+- `async dragAcrossRoom()` — drag across the room horizontally in the middle of the screen
+- `async dragFromHotspot()` — start a horizontal drag on a hotspot's own element and release away from it, then wait for the
+- `async tapRoomAt()` — tap the room host at a position relative to its box, as a fraction of its width and height
+- `async tabTo()` — press Tab up to `limit` times until the hotspot has keyboard focus; returns whether it got focus
