@@ -1,0 +1,7 @@
+set -e
+# Prettier + ESLint on staged files (see .lintstagedrc.json)
+npx lint-staged
+# Every step has a compliant docstring
+npm run lint:steps
+# Types still check
+npm run typecheck

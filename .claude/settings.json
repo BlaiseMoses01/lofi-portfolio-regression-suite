@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "playgentic@playgentic": true
+  },
+  "extraKnownMarketplaces": {
+    "playgentic": {
+      "source": {
+        "source": "github",
+        "repo": "playgentic/playgentic-agents"
+      }
+    }
+  }
+}
