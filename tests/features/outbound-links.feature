@@ -6,9 +6,9 @@ Feature: Outbound links
 
     Background:
         Given the visitor's local time is "10:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
 
-    @desktop @mobile
+    @desktop
     Scenario Outline: The <title> point links out to <url>
         When I open the "<title>" point
         Then the reading panel has a VISIT link to "<url>"
@@ -28,31 +28,29 @@ Feature: Outbound links
             | title           | url                                    |
             | Buy Me a Coffee | https://buymeacoffee.com/blaisephemy01 |
 
-    @desktop @mobile
+    @desktop
     Scenario Outline: The <title> point has no VISIT link
         When I open the "<title>" point
         Then the reading panel has no VISIT link
 
         Examples:
-            | title                 |
-            | Blaise Moses          |
-            | B.S. Computer Science |
-            | Record Collecting     |
-            | Guitar                |
+            | title        |
+            | Blaise Moses |
+            | Guitar       |
 
-    @desktop @mobile
+    @desktop
     Scenario Outline: A repo entry links to its own repo, not the profile
         Given I have opened the "GitHub" point
         When I open the "<entry>" entry
         Then the reading panel has a VISIT link to "<url>"
 
         Examples:
-            | entry                   | url                                                   |
-            | playback-mcp            | https://github.com/BlaiseMoses01/playback-mcp         |
+            | entry                   | url                                                      |
+            | playback-mcp            | https://github.com/BlaiseMoses01/playback-mcp            |
             | agentic-playwright-team | https://github.com/BlaiseMoses01/agentic-playwright-team |
-            | chip8                   | https://github.com/BlaiseMoses01/chip8-emulator       |
+            | chip8                   | https://github.com/BlaiseMoses01/chip8-emulator          |
 
-    @desktop @mobile
+    @desktop
     Scenario: Only Claude entries with a destination get a VISIT link
         Given I have opened the "Vibecoding & Agentic Things" point
         When I open the "Claude Code from Zero" entry

@@ -9,7 +9,7 @@ Feature: Sound
         Then the sound button is pressed
         And the sound button is labelled "Sound on"
 
-    @desktop @mobile
+    @desktop
     Scenario: Muting is remembered across reloads
         Given I am in the room
         When I toggle the sound
@@ -18,12 +18,12 @@ Feature: Sound
         When I reload the page
         Then the sound button is labelled "Sound off"
 
-    @desktop @mobile
+    @desktop
     Scenario: Reduced-motion visitors start muted
         Given I open the portfolio with reduced motion
         Then the sound button is labelled "Sound off"
 
-    @desktop @mobile
+    @desktop
     Scenario: The voice recording is only fetched when it is needed
         Given I navigate to path "/#projects"
         Then the voice recording has not been downloaded

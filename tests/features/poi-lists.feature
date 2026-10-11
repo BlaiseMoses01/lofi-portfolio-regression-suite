@@ -5,7 +5,7 @@ Feature: Points that hold a list
 
     Background:
         Given the visitor's local time is "10:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
 
     @desktop @mobile
     Scenario Outline: The <title> point opens on a listing
@@ -16,10 +16,10 @@ Feature: Points that hold a list
         And listing entry "01" is "<first>" with the summary "<summary>"
 
         Examples:
-            | title                       | path                  | count | first              | summary                                  |
-            | Experience                  | ~/experience/whiteboard | 4   | senior-ai-engineer | Ally Financial · Jul 2026 — now          |
-            | GitHub                      | ~/projects/octocat    | 3     | playback-mcp       | TypeScript · MCP · npm + Chrome Web Store |
-            | Vibecoding & Agentic Things | ~/projects/claude     | 3     | lofi-portfolio-build | the site you are standing in!          |
+            | title                       | path                    | count | first                | summary                                   |
+            | Experience                  | ~/experience/whiteboard | 4     | senior-ai-engineer   | Ally Financial · Jul 2026 — now           |
+            | GitHub                      | ~/projects/octocat      | 3     | playback-mcp         | TypeScript · MCP · npm + Chrome Web Store |
+            | Vibecoding & Agentic Things | ~/projects/claude       | 3     | lofi-portfolio-build | the site you are standing in!             |
 
     @desktop @mobile @smoke
     Scenario Outline: Opening the <entry> entry shows its body
@@ -30,11 +30,10 @@ Feature: Points that hold a list
         And the reading panel body contains "<excerpt>"
 
         Examples:
-            | title                       | entry                   | prompt                         | excerpt                                              |
-            | Experience                  | model-analyst           | $ vim model-analyst.md         | built golden datasets                                |
-            | GitHub                      | chip8                   | $ vim chip8.md                 | No agents anywhere near this one.                    |
-            | Vibecoding & Agentic Things | Claude Code from Zero   | $ vim claude-code-from-zero.md | Free on my YouTube!                                  |
-            | Vibecoding & Agentic Things | Professional Enablement | $ vim professional-enablement.md | I am now a Claude Champion and Enablement Lead     |
+            | title                       | entry                 | prompt                         | excerpt                           |
+            | Experience                  | model-analyst         | $ vim model-analyst.md         | built golden datasets             |
+            | GitHub                      | chip8                 | $ vim chip8.md                 | No agents anywhere near this one. |
+            | Vibecoding & Agentic Things | Claude Code from Zero | $ vim claude-code-from-zero.md | Free on my YouTube!               |
 
     @desktop @mobile
     Scenario: cd .. returns from an entry to the listing

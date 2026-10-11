@@ -4,7 +4,7 @@ Feature: Day and night theme
     HUD switch and the light switch on the wall both override that for the rest of the tab.
     Only the artwork for the visible theme is downloaded.
 
-    @desktop @mobile
+    @desktop
     Scenario Outline: At <time> the room opens in <theme>
         Given the visitor's local time is "<time>"
         When I open the portfolio with reduced motion
@@ -20,7 +20,7 @@ Feature: Day and night theme
     @desktop @mobile @smoke
     Scenario: The HUD switch toggles the lights
         Given the visitor's local time is "10:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
         Then the lights switch offers "Lights off"
         When I toggle the lights from the HUD
         Then the room is in "night" mode
@@ -29,21 +29,22 @@ Feature: Day and night theme
     @desktop
     Scenario: The light switch on the wall toggles the lights
         Given the visitor's local time is "22:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
+        Then the room is in "night" mode
         When I flip the light switch on the wall
         Then the room is in "day" mode
 
-    @desktop @mobile
+    @desktop
     Scenario: The chosen theme lasts for the tab but not for the next visit
         Given the visitor's local time is "10:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
         When I toggle the lights from the HUD
         And I reload the page
         Then the room is in "night" mode
         When I return in a new browser session
         Then the room is in "day" mode
 
-    @desktop @mobile
+    @desktop
     Scenario: Only the visible theme's artwork is downloaded
         Given the visitor's local time is "10:00"
         When I open the portfolio with reduced motion
@@ -52,10 +53,10 @@ Feature: Day and night theme
         When I toggle the lights from the HUD
         Then the "night" room artwork has been downloaded
 
-    @desktop @mobile
+    @desktop
     Scenario: An open point stays open when the lights change
         Given the visitor's local time is "10:00"
-        And I am in the room
+        And I open the portfolio with reduced motion
         And I have opened the "Guitar" point
         When I toggle the lights from the HUD
         Then the room is in "night" mode

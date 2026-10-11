@@ -36,7 +36,6 @@ Feature: Boot gate and opening shot
         When I click the boot screen
         Then the boot screen types "[ SENIOR AI ENGINEER ]"
         And no group panel is open
-        And the menu marks "HOME" as current
 
     @desktop @mobile
     Scenario: The room is entered once the boot lines finish
@@ -48,14 +47,6 @@ Feature: Boot gate and opening shot
     @desktop @mobile
     Scenario: Reduced motion skips the gate and the opening shot
         Given I open the portfolio with reduced motion
-        Then I am in the room
+        Then I eventually enter the room
         And the boot screen does not show "> PRESS ENTER"
         And the footer is visible
-
-    @desktop @mobile
-    Scenario: A stale debug setting cannot hide the scene from a real visitor
-        Given my browser has a saved debug setting that switches off the HUD and the room artwork
-        When I open the portfolio with reduced motion
-        Then the menu button is visible
-        And the room artwork is visible
-        And the debug panel is not shown

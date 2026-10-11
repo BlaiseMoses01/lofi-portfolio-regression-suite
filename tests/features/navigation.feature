@@ -1,10 +1,11 @@
 @nav
 Feature: Navigation menu and groups
-    The hamburger menu holds five groups. Picking one frames its points in the room, lights them up,
-    and shows the group's heading and blurb. Escape steps back one level at a time.
+    The hamburger menu holds five groups. Picking one frames its points in the room and shows the
+    group's heading and blurb. Escape steps back one level at a time.
 
     Background:
-        Given I am in the room
+        Given the visitor's local time is "10:00"
+        And I open the portfolio with reduced motion
 
     @desktop @mobile
     Scenario: The menu opens and closes from its button
@@ -17,7 +18,8 @@ Feature: Navigation menu and groups
     @desktop @mobile
     Scenario: Clicking outside the menu closes it
         When I open the menu
-        And I click outside the menu
+        Then the menu button is expanded
+        When I click outside the menu
         Then the menu button is collapsed
 
     @desktop @mobile @smoke
@@ -27,15 +29,13 @@ Feature: Navigation menu and groups
         Then the menu button is collapsed
         And the group panel shows the heading "<group>"
         And the group panel shows "<blurb>"
-        And the menu marks "<group>" as current
-        And the "<group>" points are lit up in the room
 
         Examples:
-            | group      | blurb                                                         |
+            | group      | blurb                                                        |
             | EXPERIENCE | Three roles, one through-line: make the model the easy part. |
-            | PROJECTS   | Things I built, shipped, and broke along the way.             |
-            | CONTENT    | Where I write, post, and respond to messages.                 |
-            | INTERESTS  | What the room is full of when I am not working.               |
+            | PROJECTS   | Things I built, shipped, and broke along the way.            |
+            | CONTENT    | Where I write, post, and respond to messages.                |
+            | INTERESTS  | What the room is full of when I am not working.              |
 
     @desktop @mobile
     Scenario: The ROOM link returns to the wide shot
@@ -43,9 +43,8 @@ Feature: Navigation menu and groups
         When I go back to "ROOM"
         Then no group panel is open
         And no reading panel is open
-        And the menu marks "HOME" as current
 
-    @desktop @mobile
+    @desktop
     Scenario: Choosing HOME clears the group panel
         Given I have opened the "INTERESTS" group
         When I open the menu

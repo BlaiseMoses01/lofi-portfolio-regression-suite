@@ -4,10 +4,170 @@
 
 [← back to index](../index.md)
 
+### `Given` I am in the room
+
+gets the visitor into the room: opens and wakes the portfolio with full motion and fast-forwards the opening shot
+
+- **Prereq:** none
+- **Uses:** page, world
+- **Source:** `tests/steps/common.steps.ts:71`
+
+### `Then` I eventually enter the room
+
+lets the opening shot play out (on the page clock) and checks the room is entered: the footer shows and the gate prompt is gone
+
+- **Prereq:** the portfolio is open and, with full motion, the machine has been woken
+- **Uses:** page, world
+- **Source:** `tests/steps/common.steps.ts:244`
+
+### `When` I go back to {string}
+
+clicks the back link of the open panel
+
+- **Prereq:** a group or point panel is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:132`
+
+### `Given` I have opened the {string} point
+
+opens a point from the room and waits for its panel to show
+
+- **Prereq:** the room is showing with no point open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:121`
+
 ### `Given` I navigate to path {string}
 
 used to navigate to a path off of the currently set base URL
 
 - **Prereq:** none
 - **Uses:** page, baseURL
-- **Source:** `tests/steps/example.steps.ts:11`
+- **Source:** `tests/steps/common.steps.ts:19`
+
+### `When` I open the {string} point
+
+clicks a point's hotspot in the room, panning it into view first on a portrait screen
+
+- **Prereq:** the room is showing with no point open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:111`
+
+### `Given` I open the portfolio
+
+opens the portfolio with full motion so the boot screen is waiting; the page clock is installed first so the opening shot can be fast-forwarded
+
+- **Prereq:** none
+- **Uses:** page, world
+- **Source:** `tests/steps/common.steps.ts:44`
+
+### `Given` I open the portfolio with reduced motion
+
+opens the portfolio with prefers-reduced-motion, which skips the gate and the opening shot
+
+- **Prereq:** runs before the portfolio is opened
+- **Uses:** page, world
+- **Source:** `tests/steps/common.steps.ts:59`
+
+### `When` I press {string}
+
+presses a key on the keyboard
+
+- **Prereq:** the portfolio is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:91`
+
+### `When` I reload the page
+
+reloads the tab the visitor is looking at, keeping the same browser session
+
+- **Prereq:** the portfolio is open
+- **Uses:** world
+- **Source:** `tests/steps/common.steps.ts:101`
+
+### `When` I skip the typing
+
+clicks the body of the open reading panel, which skips the typing
+
+- **Prereq:** a point's body is showing
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:142`
+
+### `Then` no group panel is open
+
+checks no group is open, meaning the group panel's ROOM back link is absent
+
+- **Prereq:** none
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:202`
+
+### `Then` no reading panel is open
+
+checks no point is open, meaning no ~/group/point path header is on the page
+
+- **Prereq:** none
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:192`
+
+### `Then` the footer is not visible
+
+checks the footer is not showing
+
+- **Prereq:** none
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:234`
+
+### `Then` the footer is visible
+
+checks the footer is showing
+
+- **Prereq:** none
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:224`
+
+### `Then` the group panel shows the heading {string}
+
+checks the group panel shows the given heading, together with its ROOM back link
+
+- **Prereq:** a group is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:212`
+
+### `Then` the reading panel body contains {string}
+
+checks the visible (typed) body text of the reading panel contains some text
+
+- **Prereq:** a point's body is showing
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:182`
+
+### `Then` the reading panel path is {string}
+
+checks the path header of the reading panel
+
+- **Prereq:** a point is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:162`
+
+### `Then` the reading panel prompt is {string}
+
+checks the command prompt line of the reading panel
+
+- **Prereq:** a point is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:172`
+
+### `Then` the reading panel shows the title {string}
+
+checks the point's title is shown in the reading panel
+
+- **Prereq:** a point is open
+- **Uses:** page
+- **Source:** `tests/steps/common.steps.ts:152`
+
+### `Given` the visitor's local time is {string}
+
+sets the browser clock to today at the given local time so the day or night theme is predictable
+
+- **Prereq:** runs before the portfolio is opened
+- **Uses:** page, world
+- **Source:** `tests/steps/common.steps.ts:30`

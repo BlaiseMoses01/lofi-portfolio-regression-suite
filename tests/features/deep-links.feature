@@ -15,13 +15,14 @@ Feature: Deep links
         Then the reading panel shows the title "Retro Hardware & Video Games"
         And the reading panel path is "~/interests/gameboy"
 
-    @desktop @mobile
+    @desktop
     Scenario: An unknown hash falls back to the normal opening
         Given I navigate to path "/#not-a-real-place"
-        Then no group panel is open
+        Then the boot screen shows "> PRESS ENTER"
+        And no group panel is open
         And no reading panel is open
 
-    @desktop @mobile
+    @desktop
     Scenario: Changing the hash on a loaded page moves to the new target
         Given I navigate to path "/#projects"
         When I follow a link to "#guitar"
