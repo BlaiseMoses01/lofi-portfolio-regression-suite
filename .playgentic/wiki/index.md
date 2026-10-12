@@ -16,16 +16,30 @@ These files are yours. They're never regenerated, and the playgentic agents foll
 
 ## Steps
 
-**1 step across 1 domain.** Reuse these before writing new ones.
+**69 steps across 11 domains.** Reuse these before writing new ones.
 
 | Domain | Steps | Page |
 | --- | --- | --- |
-| common steps | 1 | [steps/common-steps.md](./steps/common-steps.md) |
+| boot gate | 2 | [steps/boot-gate.md](./steps/boot-gate.md) |
+| common steps | 21 | [steps/common-steps.md](./steps/common-steps.md) |
+| deep links | 1 | [steps/deep-links.md](./steps/deep-links.md) |
+| mobile layout | 5 | [steps/mobile-layout.md](./steps/mobile-layout.md) |
+| navigation | 10 | [steps/navigation.md](./steps/navigation.md) |
+| outbound links | 6 | [steps/outbound-links.md](./steps/outbound-links.md) |
+| page metadata | 3 | [steps/page-metadata.md](./steps/page-metadata.md) |
+| poi lists | 5 | [steps/poi-lists.md](./steps/poi-lists.md) |
+| points of interest | 3 | [steps/points-of-interest.md](./steps/points-of-interest.md) |
+| sound | 6 | [steps/sound.md](./steps/sound.md) |
+| theme | 7 | [steps/theme.md](./steps/theme.md) |
 
 ## Page objects
 
-**1 page object.** See [pages.md](./pages.md) for every public member.
+**5 page objects.** See [pages.md](./pages.md) for every public member.
 
 | Page object | Summary |
 | --- | --- |
 | [BasePage](./pages.md#basepage) | shared behaviour for every page; extend it for each screen of the app |
+| [BootScreen](./pages.md#bootscreen) | the CRT gate: the computer screen that waits to be woken and then types its boot lines |
+| [Hud](./pages.md#hud) | the HUD over the room: menu, sound and lights buttons, the footer and the drag hint |
+| [ReadingPanel](./pages.md#readingpanel) | the bottom panel: a group's heading and blurb, or a point's terminal-style reading panel |
+| [RoomPage](./pages.md#roompage) | the artwork: the clickable hotspots, the letterbox around the plate and portrait panning |
